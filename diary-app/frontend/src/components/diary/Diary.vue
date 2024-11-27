@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import CreateDiary from './CreateDiary.vue'
+import ShowDiary from './ShowDiary.vue'
 
 const entries = ref([])
 
@@ -11,17 +13,28 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-    <div>
-      <h1>Diary Entries</h1>
-      <ul>
-        <li v-for="entry in entries" :key="entry.id">
-          <h2>{{ entry.title }}</h2>
-          <p>{{ entry.content }}</p>
-          <small>{{ entry.date }}</small>
-        </li>
-      </ul>
+  <main class="diary-layout">
+    <div class="left-panel">
+      <ShowDiary :entries="entries" />
+    </div>
+    <div class="right-panel">
+      <CreateDiary />
     </div>
   </main>
 </template>
+
+<style scoped>
+.diary-layout {
+  display: flex;
+}
+
+.left-panel {
+  flex: 1;
+  padding: 1rem;
+}
+
+.right-panel {
+  flex: 1;
+  padding: 1rem;
+}
+</style>

@@ -1,6 +1,7 @@
 package controllers
 
 import (
+    "log"
     "net/http"
     "diary/models"
     "diary/config"
@@ -37,6 +38,7 @@ func CreateEntry(c *gin.Context) {
 
     _, err := config.DB.Exec("INSERT INTO diary_entries (title, content, date) VALUES (?, ?, ?)", entry.Title, entry.Content, entry.Date)
     if err != nil {
+        log.Printf("Error inserting entry: %v", err)
         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
         return
     }

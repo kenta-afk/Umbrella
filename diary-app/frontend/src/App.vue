@@ -1,14 +1,13 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import { VApp, VMain } from 'vuetify/components'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <VApp>
-    <VMain>
+  <v-app>
+    <v-main>
       <RouterView />
-    </VMain>
-  </VApp>
+    </v-main>
+  </v-app>
 </template>
 
 <style scoped>
