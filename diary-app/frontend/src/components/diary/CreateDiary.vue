@@ -21,36 +21,68 @@ const createEntry = async () => {
 
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-col cols="12" md="8">
-        <h1>Create New Entry</h1>
-        <v-form @submit.prevent="createEntry">
-          <v-text-field
-            v-model="title"
-            label="Title"
-            required
-          ></v-text-field>
-          <v-textarea
-            v-model="content"
-            label="Content"
-            required
-          ></v-textarea>
-          <v-text-field
-            v-model="date"
-            label="Date"
-            type="date"
-            required
-          ></v-text-field>
-          <v-btn type="submit" color="primary">Create</v-btn>
-        </v-form>
+   <v-col >
+        <v-dialog
+          transition="dialog-top-transition"
+          width=1000
+        >
+          <template v-slot:activator="{ props: activatorProps }">
+            <v-btn
+              v-bind="activatorProps"
+              text="Create Diary"
+              class="fixed-button"
+            ></v-btn>
+          </template>
+          <template v-slot:default="{ isActive }">
+            <v-card>
+              <v-toolbar title="Create Diary"></v-toolbar>
+                <v-row justify="center">
+                  <v-col>
+                    <v-form @submit.prevent="createEntry">
+                      <v-text-field
+                        v-model="title"
+                        label="Title"
+                        required
+                      ></v-text-field>
+                      <v-textarea
+                        v-model="content"
+                        label="Content"
+                        required
+                      ></v-textarea>
+                      <v-text-field
+                        v-model="date"
+                        label="Date"
+                        type="date"
+                        required
+                      ></v-text-field>
+                      <v-btn type="submit" color="primary">Create</v-btn>
+                    </v-form>
+                  </v-col>
+                </v-row>
+              <v-card-actions class="justify-end">
+                <v-btn
+                  text="Close"
+                  @click="isActive.value = false"
+                ></v-btn>
+              </v-card-actions>
+            </v-card>
+          </template>
+        </v-dialog>
       </v-col>
-    </v-row>
+ 
+  
+    
   </v-container>
 </template>
 
 <style scoped>
-.v-container {
-  max-width: 600px;
-  margin: auto;
+.fixed-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
 }
+
 </style>
+
+

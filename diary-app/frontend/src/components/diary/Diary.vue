@@ -14,27 +14,49 @@ onMounted(async () => {
 
 <template>
   <main class="diary-layout">
-    <div class="left-panel">
-      <ShowDiary :entries="entries" />
-    </div>
-    <div class="right-panel">
-      <CreateDiary />
+    <h1>Diary</h1>
+    <div class="content">
+      <div class="show-diary">
+        <ShowDiary :entries="entries" />
+      </div>
+      <div class="create-diary">
+        <CreateDiary />
+      </div>
     </div>
   </main>
 </template>
 
 <style scoped>
+
+h1 {
+  color: white;
+}
+
+
 .diary-layout {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: black
 }
 
-.left-panel {
-  flex: 1;
-  padding: 1rem;
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  gap: 20px;
 }
 
-.right-panel {
-  flex: 1;
-  padding: 1rem;
+.show-diary {
+  width: 100%;
+}
+
+.create-diary {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 </style>
